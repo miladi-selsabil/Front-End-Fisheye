@@ -1,4 +1,6 @@
-function photographerFactory(data) {
+import { Card } from "../component/card.js";
+
+export function photographerFactory(data) {
     const { name, portrait } = data;
     const { city } = data;
     const { country } = data;
@@ -12,33 +14,9 @@ function photographerFactory(data) {
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
-        const englo = document.createElement("div");
-
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
-        const h2 = document.createElement( 'h2' );
-        h2.textContent = name;
-        const p = document.createElement('p');
-        p.textContent = city;
-        const pays = document.createElement('p');
-        pays.textContent = country;
-        const tag = document.createElement('p');
-        tag.textContent = tagline;
-        const prix = document.createElement('h6');
-        prix.textContent = price;
-        article.appendChild(img);
-        article.appendChild(h2);
-        article.appendChild(englo);
-        englo.appendChild(p);
-        englo.appendChild(pays);
-        article.appendChild(tag);
-        article.appendChild(prix);
-
-
-        
-
-
+        article.innerHTML=Card(data).render()
         return (article);
     }
     return { name, picture, city, country, tagline, getUserCardDOM }
+
 }
