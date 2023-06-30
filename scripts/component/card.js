@@ -4,13 +4,15 @@ function Card(photographe) {
     render: () => {
       return `
         <div>
-            <img src="${picture}"/>
+            <a href ="photographer.html?photographeId=${photographe.id}">
+             <img src="${picture}"/>
+            </a>
             <h2>${photographe.name}</h2>
-            <div>
+            <div class="localisation">
                 <p>${photographe.city}</p>
                 <p>${photographe.country}</p>
             </div>
-            <p>${photographe.tagline}</p>
+            <p class="tagline">${photographe.tagline}</p>
             <h6>${photographe.price}</h6>
         </div>
     `;

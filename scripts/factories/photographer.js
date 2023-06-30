@@ -7,8 +7,7 @@ export function photographerFactory(data) {
     const { tagline } = data;
     const { price } = data;
 
-
-
+    
 
     const picture = `assets/photographers/${portrait}`;
 
@@ -17,6 +16,6 @@ export function photographerFactory(data) {
         article.innerHTML=Card(data).render()
         return (article);
     }
-    return { name, picture, city, country, tagline, getUserCardDOM }
+    return { name, picture, city, country, tagline, price, getUserCardDOM }
 
 }

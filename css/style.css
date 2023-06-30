@@ -39,9 +39,16 @@ h1 {
     flex-direction: column;
 }
 .photographer_section article div{
-    display: flex;
     font-size: 13px;
     color: #901C1C;
+}
+.photographer_section article div .localisation{
+    display: flex;
+    justify-content: center;
+}
+.photographer_section article div .tagline{
+    color: black;
+    text-align: center;
 }
 p{margin: 0px;}
 .photographer_section article h2 {
@@ -49,13 +56,17 @@ p{margin: 0px;}
     font-size: 36px;
     margin-bottom: 0px;
     font-weight: 400;
+    text-align: center;
 }
 .photographer_section article h6{
     font-size: 9px;
     color: #757575;
     margin: 0px;
+    text-align: center;
 }
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
 }
