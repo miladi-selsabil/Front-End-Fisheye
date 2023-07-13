@@ -1,5 +1,4 @@
 const PATH_URL = "././data/photographers.json";
-const URL = "././data/media.json";
 
 async function getPhotographers() {
   const response = await fetch(PATH_URL);
@@ -9,10 +8,12 @@ async function getPhotographers() {
 
 export { getPhotographers };
 
-async function getMedia() {
-  const response = await fetch(URL);
-  const data = await response.json();
-  return data.media;
+async function getMedia(od) {
+  const response = await fetch(PATH_URL);
+  const data = await response.json("id");
+  const params = new URLSearchParams(document.location.search);
+  const noms = pieces.filter((id) => id.${mediaPhotographer.id});
+  return noms.data.media;
 }
 
 export { getMedia };
