@@ -4,6 +4,7 @@ function Media(mediaPhotographer) {
     render: () => {
       return `
         <div>
+
             <img src="${img}"/>
             <div class="title-img">
                 <p>${mediaPhotographer.title}</p>

@@ -6,16 +6,14 @@ async function getPhotographers() {
   return data.photographers;
 }
 
-export { getPhotographers };
-
-async function getMedia(od) {
+//  la fonction getMedia effectue une requête fetch pour récupérer les données à partir du fichier JSON photographers.json, puis filtre les médias du photographe spécifié par id.
+async function getMedia(id) {
   const response = await fetch(PATH_URL);
-  const data = await response.json("id");
-  const params = new URLSearchParams(document.location.search);
-  const noms = pieces.filter((id) => id.${mediaPhotographer.id});
-  return noms.data.media;
+  const data = await response.json();
+  const media = data.media;
+  //filtrer les médias associés à l'ID du photographe.
+  const mediaDuPhotographe = media.filter((media) => media.photographerId === id);
+  return mediaDuPhotographe;
 }
 
-export { getMedia };
-
-
+export { getPhotographers, getMedia };
