@@ -28,11 +28,13 @@ async function init() {
     // mediaFactory pour générer le contenu HTML du média
     const nodeMedia = mediaFactory(element);
     root.innerHTML += nodeMedia.getMedia();
+    const ajoutMedia = media.find((media) => media.photographerId === id);
     //Ajoutez du média au DOM
    /* root.appendChild(media.getMedia());*/
   });
   console.log(media);
 }
+
 // Appel de la fonction rend pour afficher tous les médias
 
 rend();
