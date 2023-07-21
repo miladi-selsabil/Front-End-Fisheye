@@ -1,5 +1,5 @@
 
-import { getMedia } from "../api/fetch.api.js";
+import { getMedia, getPhotographeById } from "../api/fetch.api.js";
 import { mediaFactory } from "../factories/media.js"; 
 /* Cette fonction récupère tous les médias à l'aide de la fonction getMedia depuis l' API et les affiche sur la page photographer.html. Elle crée des éléments article pour chaque média et utilise la fonction Media(element).render() pour générer le contenu HTML correspondant à chaque média.
 */
@@ -24,15 +24,19 @@ async function init() {
   const id = Number.parseInt(idDuPhotographe);
   const media = await getMedia(id);
   const root = document.querySelector(".medias_content");
+    console.log(media);
+    //element represente une occurence du tableau des medias
+  const photographe = await getPhotographeById(id);
+  console.log(photographe)
   media.forEach((element) => {
+    
     // mediaFactory pour générer le contenu HTML du média
-    const nodeMedia = mediaFactory(element);
+    const nodeMedia = mediaFactory(element, photographe.name);
     root.innerHTML += nodeMedia.getMedia();
     const ajoutMedia = media.find((media) => media.photographerId === id);
     //Ajoutez du média au DOM
    /* root.appendChild(media.getMedia());*/
   });
-  console.log(media);
 }
 
 // Appel de la fonction rend pour afficher tous les médias

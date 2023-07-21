@@ -16,4 +16,13 @@ async function getMedia(id) {
   return mediaDuPhotographe;
 }
 
-export { getPhotographers, getMedia };
+
+async function getPhotographeById(photographerId) {
+   const response = await fetch(PATH_URL);
+  const data = await response.json();
+  const photographers= data.photographers;
+  const photographe = photographers.find((item) =>item.id === photographerId);
+  return photographe
+}
+
+export { getPhotographers, getMedia, getPhotographeById };
