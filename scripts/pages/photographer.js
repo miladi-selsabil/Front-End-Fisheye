@@ -1,30 +1,25 @@
 
-import { getMedia, getPhotographeById } from "../api/fetch.api.js";
+import { getMedia, getPhotographeById, getPhotographers } from "../api/fetch.api.js";
 import { mediaFactory } from "../factories/media.js"; 
+import { infoDuPhotographe } from "../factories/media.js";
 /* Cette fonction récupère tous les médias à l'aide de la fonction getMedia depuis l' API et les affiche sur la page photographer.html. Elle crée des éléments article pour chaque média et utilise la fonction Media(element).render() pour générer le contenu HTML correspondant à chaque média.
 */
-async function rend() {
-  const root = document.querySelector(".medias_content");
-  const medias = await getMedia();
-console.log(medias)
 
 
-  medias.forEach((element) => {
-    // mediaFactory pour générer le contenu HTML du média
-    const media = mediaFactory(element);
-    //Ajoutez du média au DOM
-    root.appendChild(media.getMedia());
-  });
-}
-
-/* Cette fonction récupère l'ID du photographe à partir des paramètres d'URL (photographeId) et utilise cet ID pour récupérer les médias spécifiques de ce photographe à l'aide de la fonction getMedia. Les médias récupérés sont affichés dans la console avec console.log(media).  */
+/* Cette fonction récupère l'ID du photographe à partir des paramètres d'URL (photographeId) 
+et utilise cet ID pour récupérer les médias spécifiques de ce photographe à l'aide
+ de la fonction getMedia.
+ Les médias récupérés sont affichés dans la console avec console.log(media).  */
 async function init() {
   const params = new URLSearchParams(document.location.search);
   const idDuPhotographe = params.get("photographeId");
   const id = Number.parseInt(idDuPhotographe);
   const media = await getMedia(id);
+    const ph = await getPhotographers(id);
   const root = document.querySelector(".medias_content");
+  const headerPresentation = document.querySelector('.photograph-header');
     console.log(media);
+    
     //element represente une occurence du tableau des medias
   const photographe = await getPhotographeById(id);
   console.log(photographe)
@@ -33,15 +28,18 @@ async function init() {
     // mediaFactory pour générer le contenu HTML du média
     const nodeMedia = mediaFactory(element, photographe.name);
     root.innerHTML += nodeMedia.getMedia();
-    const ajoutMedia = media.find((media) => media.photographerId === id);
     //Ajoutez du média au DOM
    /* root.appendChild(media.getMedia());*/
+  });
+
+  ph.forEach(() => {
+    const contenu = infoDuPhotographe(photographe);
+    headerPresentation.innerHTML += contenu.getDom();
   });
 }
 
 // Appel de la fonction rend pour afficher tous les médias
 
-rend();
 
 // Appel de la fonction init pour récupérer les médias du photographe spécifié par l'ID
 init();

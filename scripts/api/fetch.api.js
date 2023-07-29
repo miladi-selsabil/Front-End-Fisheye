@@ -6,7 +6,10 @@ async function getPhotographers() {
   return data.photographers;
 }
 
-//  la fonction getMedia effectue une requête fetch pour récupérer les données à partir du fichier JSON photographers.json, puis filtre les médias du photographe spécifié par id.
+/*
+  la fonction getMedia effectue une requête fetch pour récupérer 
+les données à partir du fichier JSON photographers.json, puis
+ filtre les médias du photographe spécifié par id.*/
 async function getMedia(id) {
   const response = await fetch(PATH_URL);
   const data = await response.json();

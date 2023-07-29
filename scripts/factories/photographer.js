@@ -1,5 +1,4 @@
 import { Card } from "../component/card.js";
-
 export function photographerFactory(data) {
     const { name, portrait } = data;
     const { city } = data;
