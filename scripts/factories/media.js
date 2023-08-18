@@ -1,23 +1,25 @@
 export function infoDuPhotographe(data){
-  const {name, portrait, city, tagline} = data;
+  const {id, name, portrait, city, tagline} = data;
       const picture = `assets/photographers/${portrait}`;
 
 
   function getDom(){
       return `
-        <div>
-             <img src="${picture}"/>
-            </a>
-            <h2>${data.name}</h2>
+        <div class="contact_photographe">  
+        
             <div class="localisation">
-                <p>${data.city}</p>
-                <p>${data.tagline}</p>
+                <h2>${data.name}</h2>
+                <p class="city">${data.city}, ${data.country}</p>
+                <p class="tagline">${data.tagline}</p>
 
             </div>
+             <img class="picture_photographe" src="${picture}"/>
+            </a>
+          
         </div>
     `;
   }
-  return {name, portrait, city, tagline, getDom};
+  return {id, name, portrait, city, tagline, getDom};
 }
 
 export function mediaFactory(data, photographerName) {
@@ -26,15 +28,16 @@ export function mediaFactory(data, photographerName) {
   
   function getMedia() {
     return `
-      <div>
+      <div class="carte_media">
         <img class="img_media" src="${img}"/>
         <div class="detail_media">
         <div class="name_img">
           <p>${data.title}</p>
+          <div class="like">
           <p>${data.likes}</p>
+          <i class="fas fa-heart"></i>
+          </div>
         </div>
-          <p>${data.date}</p>
-          <p>${data.price}</p>
         </div>
       </div>
     `;

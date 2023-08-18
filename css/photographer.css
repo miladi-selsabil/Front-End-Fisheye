@@ -6,6 +6,7 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    padding: 52px;
 }
 
 .contact_button {
@@ -84,15 +85,49 @@ form input {
 .medias_content{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
+     margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 70px;
 }
 .name_img{
     display: flex;
     justify-content: space-between;
+    color: #901C1C;
+    margin-top: 8px;
+    font-size: 24px;
+    font-weight: 400;
 }
-.picture{
+.name_img .like{
+    display: flex;
+    align-items: center;
+}
+.name_img .like .fa-heart {
+     padding-left: 6px;
+}
+.picture, .picture_photographe{
     height: 200px;
         width: 200px;
         border-radius: 50%;
-        object-fit: cover;
+}
+.contact_photographe{
+    display: flex;
+    justify-content: space-between;
+        
+}
+.contact_photographe .localisation h2{
+    font-size: 64px;
+    color: #d3573c;
+    margin: 0px;
+    font-weight: 400;
+}
+.contact_photographe .localisation .city{
+    font-size: 24px;
+    line-height: 31px;
+    font-weight: 400;
+    color: #d3573c;
+    margin-bottom: 15px;
+}
+.carte_media{
+    margin-bottom: 30px;
 }

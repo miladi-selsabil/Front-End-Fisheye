@@ -2,11 +2,15 @@
 import { getMedia, getPhotographeById, getPhotographers } from "../api/fetch.api.js";
 import { mediaFactory } from "../factories/media.js"; 
 import { infoDuPhotographe } from "../factories/media.js";
-/* Cette fonction récupère tous les médias à l'aide de la fonction getMedia depuis l' API et les affiche sur la page photographer.html. Elle crée des éléments article pour chaque média et utilise la fonction Media(element).render() pour générer le contenu HTML correspondant à chaque média.
+/* Cette fonction récupère tous les médias à l'aide de la fonction getMedia
+ depuis l' API et les affiche sur la page photographer.html. Elle crée des éléments
+  article pour chaque média et utilise la fonction Media(element).render() pour 
+  générer le contenu HTML correspondant à chaque média.
 */
 
 
-/* Cette fonction récupère l'ID du photographe à partir des paramètres d'URL (photographeId) 
+/* Cette fonction récupère l'ID du photographe à partir des paramètres d'URL
+ (photographeId) 
 et utilise cet ID pour récupérer les médias spécifiques de ce photographe à l'aide
  de la fonction getMedia.
  Les médias récupérés sont affichés dans la console avec console.log(media).  */
@@ -15,7 +19,6 @@ async function init() {
   const idDuPhotographe = params.get("photographeId");
   const id = Number.parseInt(idDuPhotographe);
   const media = await getMedia(id);
-    const ph = await getPhotographers(id);
   const root = document.querySelector(".medias_content");
   const headerPresentation = document.querySelector('.photograph-header');
     console.log(media);
@@ -32,11 +35,16 @@ async function init() {
    /* root.appendChild(media.getMedia());*/
   });
 
-  ph.forEach(() => {
-    const contenu = infoDuPhotographe(photographe);
-    headerPresentation.innerHTML += contenu.getDom();
-  });
+ function user() {
+      const contenu = infoDuPhotographe(photographe);
+      headerPresentation.innerHTML += contenu.getDom();
+      return headerPresentation;
+
+ }
+ user();
+
 }
+
 
 // Appel de la fonction rend pour afficher tous les médias
 
