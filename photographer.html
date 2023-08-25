@@ -14,7 +14,6 @@
     </header>
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
       <div class="medias_content">
 
@@ -24,24 +23,37 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img class="close" src="assets/icons/close.svg"  />
         </header>
-				<form>
+				<form id="inscription">
 					<div>
 						<label>Prénom</label>
-						<input type="text" />
+						<input id="first-name" name="first-name" type="text" class="text-control"/><br>
+            <div class="error_first_name error"></div>
+
+          </div>
+          <div>
             <label>Nom</label>
-						<input type="text"/>
+						<input id="name" name="name" type="text" class="text-control"/><br>
+            <div class="error_name error"></div>
+
+          </div>
+          <div>
             <label>Email</label>
-						<input type="email" />
+						<input class="text-control" type="email" id="email" name="email" /><br>
+            <div class="error_email error"></div>
+
+          </div>
+          <div>
             <label>Message</label>
-						<input type="text" />
+						<input class="text-control" type="text"  id="message" name="message"/>
+            <div class="error_message error"></div>
+
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button" type="submit">Envoyer</button>
 				</form>
 			</div>
 		</div>
-    <script src="/Front-End-Fisheye/scripts/utils/contactForm.js"></script>
     <script src="/Front-End-Fisheye/scripts/pages/photographer.js" type="module"></script>
 
   </body>

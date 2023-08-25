@@ -13,6 +13,9 @@ export function infoDuPhotographe(data){
                 <p class="tagline">${data.tagline}</p>
 
             </div>
+
+              <button class="contact_button">Contactez-moi</button>
+
              <img class="picture_photographe" src="${picture}"/>
             </a>
           

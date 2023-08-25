@@ -113,6 +113,7 @@ form input {
 .contact_photographe{
     display: flex;
     justify-content: space-between;
+    align-items: center;
         
 }
 .contact_photographe .localisation h2{
