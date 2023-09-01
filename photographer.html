@@ -1,60 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
+    <header role=”banner”>
+      <img src="assets/images/logo.png" class="logo" alt="logo" />
     </header>
-    <main id="main">
-      <div class="photograph-header">
-      </div>
-      <div class="medias_content">
-
-      </div>
+    <main id="main" aria-label="navigation-media">
+      <div class="photograph-header"></div>
+      <div class="medias_content"></div>
     </main>
     <div id="contact_modal">
-			<div class="modal">
-				<header>
+      <div class="modal">
+        <header>
           <h2>Contactez-moi</h2>
-          <img class="close" src="assets/icons/close.svg"  />
+          <img class="close" src="assets/icons/close.svg" />
         </header>
-				<form id="inscription">
-					<div>
-						<label>Prénom</label>
-						<input id="first-name" name="first-name" type="text" class="text-control"/><br>
+        <form id="inscription" role=group>
+          <div>
+            <label for="prenom">Prénom</label>
+            <input
+              id="first-name"
+              name="first-name"
+              type="text"
+              class="text-control"
+            /><br />
             <div class="error_first_name error"></div>
-
           </div>
           <div>
-            <label>Nom</label>
-						<input id="name" name="name" type="text" class="text-control"/><br>
+            <label for="nom">Nom</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              class="text-control"
+            /><br />
             <div class="error_name error"></div>
-
           </div>
           <div>
-            <label>Email</label>
-						<input class="text-control" type="email" id="email" name="email" /><br>
+            <label for="email">Email</label>
+            <input
+              class="text-control"
+              type="email"
+              id="email"
+              name="email"
+            /><br />
             <div class="error_email error"></div>
-
           </div>
           <div>
-            <label>Message</label>
-						<input class="text-control" type="text"  id="message" name="message"/>
+            <label for="message">Message</label>
+            <input
+              class="text-control"
+              type="text"
+              id="message"
+              name="message"
+            />
             <div class="error_message error"></div>
-
-					</div>
+          </div>
           <button class="contact_button" type="submit">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <script src="/Front-End-Fisheye/scripts/pages/photographer.js" type="module"></script>
-
+        </form>
+      </div>
+    </div>
+    <script src="./scripts/pages/photographer.js" type="module"></script>
   </body>
 </html>

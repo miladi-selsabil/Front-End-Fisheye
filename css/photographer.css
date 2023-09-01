@@ -1,5 +1,14 @@
 #contact_modal {
     display: none;
+    position: fixed;
+        z-index: 3;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+        background-color: #fff;
+        opacity: 0.9;
 }
 
 .photograph-header {
@@ -74,6 +83,9 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+form .error{
+    color: red;
 }
 
 .img_media{

@@ -1,48 +1,42 @@
-
-
-export function initModal(){
-  /*  const closeBouton = document.querySelector(".close");*/
-    const bouton = document.querySelector(".contact_button");
-    bouton.addEventListener("click", displayModal());
-    /*closeBouton.addEventListener ("click", closeModal());*/
-
+const form = document.getElementById("inscription");
+export function initModal() {
+  const closeBouton = document.querySelector(".close");
+  const bouton = document.querySelector(".contact_button");
+  bouton.addEventListener("click", () => displayModal());
+  closeBouton.addEventListener("click", () => closeModal());
 }
 function displayModal() {
-    const modal = document.getElementById("contact_modal");
-	modal.style.display = "block";
+  const modal = document.getElementById("contact_modal");
+  modal.style.display = "block";
 }
-displayModal()
 
 function closeModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "none"; 
+  const modal = document.getElementById("contact_modal");
+  modal.style.display = "none";
 }
-closeModal()
-const form = document.getElementById("inscription");
 
 /*function pour envoi du formulaire si toute les conditions de la fonction submit 
 sont remplis le formulaire est envoyer est un message de validation apparait */
-export function soumettre(){
 form.addEventListener("submit", function (e) {
-  e.preventDefault();
+  e.preventDefault;
 
   if (submitEvent()) {
-    console.log('cest ok')
+    console.log("cest ok");
+  } else {
+    console.log("le formulaire est incomplet ");
   }
 });
-}
 const regexName = new RegExp("^[A-Za-z.\\-\\_]{2,20}$");
 const regexEmail = new RegExp(
   "^[A-Za-z0-9.\\_]+[@]{1}[A-Za-z0-9.\\-\\_]+[.]{1}[a-z]{2,10}$"
 );
- 
+
 const fields = document.querySelectorAll(".text-control");
 const fieldsError = document.querySelectorAll("error");
 
 let formValid = true;
 
 export function submitEvent() {
-  
   Array.from(fieldsError).forEach((errorNode) => {
     errorNode.innerHTML = "";
   });
@@ -53,7 +47,7 @@ export function submitEvent() {
     const type = nodeElement.getAttribute("id");
     const parent = nodeElement.parentNode;
     const errorNode = parent.querySelector(".error");
-    switch (type) {   
+    switch (type) {
       case "first-name":
         /*On utilisera test() dès qu'on souhaite savoir si une partie d'une chaîne de 
         caractères correspond à une expression rationnelle elle renvoie true ou false */
@@ -74,12 +68,14 @@ export function submitEvent() {
           formValid = false;
         }
         break;
-      
-      
+      case "message":
+        if ((nodeElement.value = null)) {
+          errorNode.innerHTML = "le champs message est vide";
+          formValid = false;
+        }
     }
   });
-
-
+  return formValid ;
 }
 
 /*function initEvent qui va permettre de verifier si les conditions du champs sont 
@@ -121,12 +117,18 @@ function initEvent() {
             errorNode.innerHTML = "";
           }
         });
-        
         break;
-      
+      case "message":
+        nodeElement.addEventListener("change", function (event) {
+          if ((nodeElement.value = null)) {
+            errorNode.innerHTML = "le champs message est vide";
+          } else {
+            errorNode.innerHTML = "";
+          }
+        });
     }
   });
-  //test les champs radio
+   return formValid;
 
 }
 

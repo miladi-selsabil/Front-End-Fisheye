@@ -2,10 +2,10 @@
 import { getMedia, getPhotographeById, getPhotographers } from "../api/fetch.api.js";
 import { mediaFactory } from "../factories/media.js"; 
 import { infoDuPhotographe } from "../factories/media.js";
-import { initModal, submitEvent, soumettre } from "../utils/contactForm.js";
+import { initModal, submitEvent} from "../utils/contactForm.js";
 
 /* Cette fonction récupère tous les médias à l'aide de la fonction getMedia
- depuis l' API et les affiche sur la page photographer.html. Elle crée des éléments
+ depuis l' API et les affiches sur la page photographer.html. Elle créer des éléments
   article pour chaque média et utilise la fonction Media(element).render() pour 
   générer le contenu HTML correspondant à chaque média.
 */
@@ -40,7 +40,8 @@ async function init() {
  submitEvent();
 user(photographe);
 initModal();
-soumettre();
+
+
 }
 
 function user(photographe) {

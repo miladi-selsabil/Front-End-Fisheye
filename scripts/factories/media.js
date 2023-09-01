@@ -32,7 +32,7 @@ export function mediaFactory(data, photographerName) {
   function getMedia() {
     return `
       <div class="carte_media">
-        <img class="img_media" src="${img}"/>
+        <img class="img_media" alt="${title}" src="${img}"/>
         <div class="detail_media">
         <div class="name_img">
           <p>${data.title}</p>

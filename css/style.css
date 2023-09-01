@@ -58,8 +58,8 @@ p{margin: 0px;}
     font-weight: 400;
     text-align: center;
 }
-.photographer_section article h6{
-    font-size: 9px;
+.photographer_section article .prix{
+    font-size: 12px;
     color: #757575;
     margin: 0px;
     text-align: center;

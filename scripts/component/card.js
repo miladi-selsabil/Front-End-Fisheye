@@ -5,7 +5,7 @@ function Card(photographe) {
       return `
         <div>
             <a href ="photographer.html?photographeId=${photographe.id}">
-             <img src="${picture}"/>
+             <img src="${picture}" alt="photographe"/>
             </a>
             <h2>${photographe.name}</h2>
             <div class="localisation">
@@ -13,7 +13,7 @@ function Card(photographe) {
                 <p>${photographe.country}</p>
             </div>
             <p class="tagline">${photographe.tagline}</p>
-            <h6>${photographe.price}</h6>
+            <p class="prix">${photographe.price}</p>
         </div>
     `;
     },
