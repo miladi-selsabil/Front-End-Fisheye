@@ -23,6 +23,14 @@
     </header>
     <main id="main" aria-label="navigation-media">
       <div class="photograph-header"></div>
+        <div class="listbox_container">
+            <span class="filter-by" aria-label="liste filtrante">Trier par</span>
+            <select aria-label="filtrer par" name="filtre" id="listbox" class="listbox listbox__btn">
+                <option value="popularité" >Popularité <i class="fas fa-chevron-down"></i><i class="fas fa-chevron-up"></i></option>
+                <option value="date" id="date">Date</option> 
+                <option value="titre">Titre</option>
+            </select>
+        </div> 
       <div class="medias_content"></div>
     </main>
     <div id="contact_modal">
@@ -31,7 +39,7 @@
           <h2>Contactez-moi</h2>
           <img class="close" src="assets/icons/close.svg" />
         </header>
-        <form id="inscription" role=group>
+        <form id="inscription" method="dialog" role=group>
           <div>
             <label for="prenom">Prénom</label>
             <input
@@ -79,3 +87,6 @@
     <script src="./scripts/pages/photographer.js" type="module"></script>
   </body>
 </html>
+
+
+

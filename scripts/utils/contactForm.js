@@ -4,6 +4,16 @@ export function initModal() {
   const bouton = document.querySelector(".contact_button");
   bouton.addEventListener("click", () => displayModal());
   closeBouton.addEventListener("click", () => closeModal());
+  form.addEventListener("submit", function (e) {
+    e.preventDefault;
+
+    if (submitEvent()) {
+      console.log("cest ok");
+    } else {
+      console.log("le formulaire est incomplet ");
+    }
+    console.log(formValid);
+  });
 }
 function displayModal() {
   const modal = document.getElementById("contact_modal");
@@ -17,15 +27,7 @@ function closeModal() {
 
 /*function pour envoi du formulaire si toute les conditions de la fonction submit 
 sont remplis le formulaire est envoyer est un message de validation apparait */
-form.addEventListener("submit", function (e) {
-  e.preventDefault;
 
-  if (submitEvent()) {
-    console.log("cest ok");
-  } else {
-    console.log("le formulaire est incomplet ");
-  }
-});
 const regexName = new RegExp("^[A-Za-z.\\-\\_]{2,20}$");
 const regexEmail = new RegExp(
   "^[A-Za-z0-9.\\_]+[@]{1}[A-Za-z0-9.\\-\\_]+[.]{1}[a-z]{2,10}$"
@@ -69,15 +71,16 @@ export function submitEvent() {
         }
         break;
       case "message":
-        if ((nodeElement.value = null)) {
+        if ((nodeElement.value == "")) {
           errorNode.innerHTML = "le champs message est vide";
           formValid = false;
         }
+        break;
     }
   });
-  return formValid ;
+  return formValid;
 }
-
+submitEvent();
 /*function initEvent qui va permettre de verifier si les conditions du champs sont 
 respecter sans envoyer le formulaire elle renvoie un message d'erreur au moment 
 de changer et de passer au champs suivant 
@@ -120,16 +123,17 @@ function initEvent() {
         break;
       case "message":
         nodeElement.addEventListener("change", function (event) {
-          if ((nodeElement.value = null)) {
+          if ((nodeElement.value == "")) {
             errorNode.innerHTML = "le champs message est vide";
           } else {
             errorNode.innerHTML = "";
           }
+          console.log(message);
         });
+        break;
     }
   });
-   return formValid;
-
+  return formValid;
 }
 
 initEvent();
