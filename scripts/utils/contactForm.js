@@ -8,7 +8,9 @@ export function initModal() {
     e.preventDefault;
 
     if (submitEvent()) {
-      console.log("cest ok");
+        console.log(`Field value: ${nodeElement.value}`);
+  
+     closeModal();
     } else {
       console.log("le formulaire est incomplet ");
     }
@@ -80,7 +82,7 @@ export function submitEvent() {
   });
   return formValid;
 }
-submitEvent();
+
 /*function initEvent qui va permettre de verifier si les conditions du champs sont 
 respecter sans envoyer le formulaire elle renvoie un message d'erreur au moment 
 de changer et de passer au champs suivant 

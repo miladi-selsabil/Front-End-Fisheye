@@ -2,18 +2,23 @@
 <html lang="en">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
     <title>Fisheye</title>
   </head>
   <body>
-    <header role=”banner” >
-        <img src="assets/images/logo.png" class="logo" />
-        <h1>Nos photographes</h1>
+    <header role="banner" aria-label="header">
+      <a href="./index.html" class="logo-link">
+         <img src="assets/images/logo.png" class="logo" alt="Page principale FishEye"/>
+        </a>
+      <h1 aria-label="Nos photographes">Nos photographes</h1>
     </header>
-    <main id="main" aria-label="navigation-photographes">
-        <div class="photographer_section"></div>
+    <main id="main" aria-label="navigation-photographes" tabindex="0">
+      <div class="photographer_section"></div>
     </main>
     <script type="module" src="scripts/pages/index.js"></script>
   </body>

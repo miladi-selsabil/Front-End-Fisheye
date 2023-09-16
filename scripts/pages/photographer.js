@@ -3,6 +3,7 @@ import { getMedia, getPhotographeById, getPhotographers } from "../api/fetch.api
 import { mediaFactory } from "../factories/media.js"; 
 import { infoDuPhotographe } from "../factories/media.js";
 import { initModal} from "../utils/contactForm.js";
+import { lightbox } from "../factories/media.js";
 import { trierParDate } from "../component/filter.js";
 /* Cette fonction récupère tous les médias à l'aide de la fonction getMedia
  depuis l' API et les affiches sur la page photographer.html. Elle créer des éléments
@@ -22,7 +23,6 @@ async function init() {
   const id = Number.parseInt(idDuPhotographe);
   const media = await getMedia(id);
   const root = document.querySelector(".medias_content");
-    const listbox = document.getElementById("listbox");
     console.log(media);
     
     //element represente une occurence du tableau des medias
@@ -35,11 +35,21 @@ async function init() {
     root.innerHTML += nodeMedia.getMedia();
     //Ajoutez du média au DOM
    /* root.appendChild(media.getMedia());*/ 
+   const mediaImg = document.querySelectorAll(".img_media");
+   mediaImg.forEach((img) => {
+    img.addEventListener("click", function(){
+      const nodelightbox = lightbox(element);
+      const lightboxContainer = document.querySelector(".lightboxCont");
+      lightboxContainer.innerHTML= nodelightbox.carousel;
+      root.style.display="none";
+    });
+   });
 });
 
 
 
-  media.forEach((element) => {
+
+ /* media.forEach((element) => {
     const dateMedia = mediaFactory(element, photographe.Date);
        photographe.date = dateMedia.value;
      });
@@ -53,11 +63,11 @@ async function init() {
 
 
 });
- 
+ */
 
 user(photographe);
 initModal();
-trierParDate(media);
+// trierParDate(media);
 
 }
 

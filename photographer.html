@@ -18,11 +18,13 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header role=”banner”>
-      <img src="assets/images/logo.png" class="logo" alt="logo" />
+    <header role="banner" aria-label="header">
+      <a href="./index.html" class="logo-link">
+         <img src="assets/images/logo.png" class="logo" alt="Page principale FishEye"/>
+        </a>
     </header>
     <main id="main" aria-label="navigation-media">
-      <div class="photograph-header"></div>
+      <div class="photograph-header" aria-label="Informations Photographe" role="information" tabindex="0"></div>
         <div class="listbox_container">
             <span class="filter-by" aria-label="liste filtrante">Trier par</span>
             <select aria-label="filtrer par" name="filtre" id="listbox" class="listbox listbox__btn">
@@ -33,15 +35,15 @@
         </div> 
       <div class="medias_content"></div>
     </main>
-    <div id="contact_modal">
-      <div class="modal">
+    <div id="contact_modal" >
+      <div class="modal" aria-label="modale de contact" tabindex="0">
         <header>
           <h2>Contactez-moi</h2>
           <img class="close" src="assets/icons/close.svg" />
         </header>
         <form id="inscription" method="dialog" role=group>
           <div>
-            <label for="prenom">Prénom</label>
+            <label for="prenom" aria-label="entrez votre prénom">Prénom</label>
             <input
               id="first-name"
               name="first-name"
@@ -51,7 +53,7 @@
             <div class="error_first_name error"></div>
           </div>
           <div>
-            <label for="nom">Nom</label>
+            <label for="nom" aria-label="entrez votre nom">Nom</label>
             <input
               id="name"
               name="name"
@@ -61,7 +63,7 @@
             <div class="error_name error"></div>
           </div>
           <div>
-            <label for="email">Email</label>
+            <label for="email" aria-label="entrez votre email">Email</label>
             <input
               class="text-control"
               type="email"
@@ -71,7 +73,7 @@
             <div class="error_email error"></div>
           </div>
           <div>
-            <label for="message">Message</label>
+            <label for="message" aria-label="entrez votre message">Message</label>
             <input
               class="text-control"
               type="text"
@@ -84,6 +86,8 @@
         </form>
       </div>
     </div>
+    <div class="lightboxCont"></div>
+
     <script src="./scripts/pages/photographer.js" type="module"></script>
   </body>
 </html>
