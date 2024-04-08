@@ -124,19 +124,16 @@ export function handleLike(event, mediaArray) {
   const likeCountElement = mediaElement.querySelector(".like-count");
   const mediaId = mediaElement.dataset.mediaId;
 
-  // Find the media item in the array
   const media = mediaArray.find((m) => m.id.toString() === mediaId);
 
-  // Check if media is found and has not been liked yet
   if (media && !media.liked) {
     media.likes += 1;
-    media.liked = true; // Set the liked property to true
-    likeCountElement.textContent = media.likes; // Update the like count in the DOM
+    media.liked = true; 
+    likeCountElement.textContent = media.likes; 
 
-    // Now update the total likes display
     updateTotalLikes(mediaArray);
   } else if (!media) {
-    console.error(`Media item with ID ${mediaId} not found.`);
+    console.error();
   }
 }
 
