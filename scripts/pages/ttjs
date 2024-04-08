@@ -33,96 +33,37 @@ async function init() {
 
   //element represente une occurence du tableau des medias
   const photographe = await getPhotographeById(id);
-
+  console.log(photographe);
+  if (!photographe || !photographe.name) {
+    console.error(
+      "Les données du photographe sont incomplètes ou n’ont pas été correctement chargées."
+    );
+    return; // Sortie de la fonction si les données du photographe ne sont pas disponibles
+  }
   root.innerHTML = "";
-
-
 
   media.forEach((element) => {
     const nodeMedia = mediaFactory(element, photographe.name).getMedia();
     const mediaContainer = document.createElement("div");
     mediaContainer.innerHTML = nodeMedia;
     root.appendChild(mediaContainer);
-    const likeButtons = mediaContainer.querySelectorAll(".like-button");
-    likeButtons.forEach((button) => {
-      button.addEventListener("click", handleLike);
-    });
   });
   const mediaImages = root.querySelectorAll(".img_media");
   mediaImages.forEach((img, index) => {
     img.addEventListener("click", function (e) {
       e.preventDefault();
-      /* Générer le contenu de la lightbox pour le média cliqué*/
       const nodelightbox = lightbox(media[index], photographe.name);
-
-      /* Sélectionner le conteneur de la lightbox et injecter le nouveau contenu*/
       const lightboxContainer = document.querySelector(".lightbox_container");
-      lightboxContainer.style.display = "block";
       lightboxContainer.innerHTML = nodelightbox.carousel;
-
-      
-      function setupLightboxEventHandlers(index, media, photographe, lightboxContainer ) {
-        const prevButton = lightboxContainer.querySelector("#prev");
-        const nextButton = lightboxContainer.querySelector("#next");
-        const closeButton = lightboxContainer.querySelector(".close-lightbox");
-
-        if (prevButton) {
-          prevButton.addEventListener("click", () => {
-            if (index > 0) {
-              index--; 
-            } else {
-              index = media.length - 1; 
-            }
-            updateLightbox(index, media, photographe, lightboxContainer);
-          });
-        }
-
-        if (nextButton) {
-          nextButton.addEventListener("click", () => {
-            if (index < media.length - 1) {
-              index++;
-            } else {
-              index = 0; 
-            }
-            updateLightbox(index, media, photographe, lightboxContainer);
-          });
-        }
-
-       
-        if (closeButton) {
-          closeButton.addEventListener("click", () => {
-            lightboxContainer.style.display = "none"; 
-          });
-        }
-      }
-
-      /* Cette fonction met à jour le contenu de la lightbox et réinitialise les gestionnaires d'événements*/
-      function updateLightbox(index, media, photographe, lightboxContainer) {
-        const nodelightbox = lightbox(media[index], photographe.name);
-        lightboxContainer.innerHTML = nodelightbox.carousel; 
-        setupLightboxEventHandlers(
-          index,
-          media,
-          photographe,
-          lightboxContainer
-        ); 
-      }
-
-      /* Initialisez la lightbox en attachant les gestionnaires d'événements
-       pour la première fois après avoir injecté le contenu initial dans le lightboxContainer*/
-      setupLightboxEventHandlers(0,media,photographe,
-        document.querySelector(".lightbox_container")
-      );
+      lightboxContainer.style.display = "block"; // Assurez-vous que la lightbox est visible
     });
   });
- 
-
   const listbox = document.querySelector(".listbox");
 
   listbox.addEventListener("change", function () {
     const critereDeTri = listbox.value;
 
-    /*Triez les médias en fonction du critère de tri sélectionné*/
+    // Triez les médias en fonction du critère de tri sélectionné
     if (critereDeTri === "date") {
       trierParDate(media);
     } else if (critereDeTri === "titre") {
@@ -132,18 +73,21 @@ async function init() {
     }
     root.innerHTML = "";
     media.forEach((element) => {
-      const nodeMedia = mediaFactory(element, photographe.name).getMedia();
-      const mediaContainer = document.createElement("div");
-      mediaContainer.innerHTML = nodeMedia;
-      root.appendChild(mediaContainer);
-    });
-    const mediaImages = root.querySelectorAll(".img_media");
-    mediaImages.forEach((img, index) => {
-      img.addEventListener("click", function (e) {
-        e.preventDefault();
-        const nodelightbox = lightbox(media[index], photographe.name);
-        const lightboxContainer = document.querySelector(".lightbox_container");
-        lightboxContainer.innerHTML = nodelightbox.carousel;
+      // mediaFactory pour générer le contenu HTML du média
+      const nodeMedia = mediaFactory(element, photographe.name);
+      root.innerHTML += nodeMedia.getMedia();
+      //Ajoutez du média au DOM
+      /* root.appendChild(media.getMedia());*/
+      const mediaImg = document.querySelectorAll(".img_media");
+      mediaImg.forEach((img) => {
+        img.addEventListener("click", function () {
+          const nodelightbox = lightbox(element);
+          const lightboxContainer = document.querySelector(
+            ".lightbox_container"
+          );
+          lightboxContainer.innerHTML = nodelightbox.carousel;
+          root.style.display = "none";
+        });
       });
     });
   });
@@ -157,7 +101,7 @@ function user(photographe) {
   headerPresentation.innerHTML += contenu.getDom();
   console.log(headerPresentation);
 }
- 
+
 // Appel de la fonction rend pour afficher tous les médias
 
 // Appel de la fonction init pour récupérer les médias du photographe spécifié par l'ID

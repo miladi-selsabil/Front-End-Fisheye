@@ -5,10 +5,11 @@ export function initModal() {
   bouton.addEventListener("click", () => displayModal());
   closeBouton.addEventListener("click", () => closeModal());
   form.addEventListener("submit", function (e) {
-    e.preventDefault;
+    e.preventDefault();
 
     if (submitEvent()) {
-        console.log(`Field value: ${nodeElement.value}`);
+        closeModal();
+        displayFormData();
   
      closeModal();
     } else {
@@ -25,6 +26,12 @@ function displayModal() {
 function closeModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "none";
+}
+function displayFormData(data) {
+  const formData = new FormData(form);
+  for(const [key, value] of formData.entries()){
+    console.log(`${key}: ${value}`);
+  }
 }
 
 /*function pour envoi du formulaire si toute les conditions de la fonction submit 
