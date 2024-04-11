@@ -3,7 +3,7 @@ function Card(photographe) {
   return {
     render: () => {
       return `
-        <div>
+        <div aria-label="${photographe.id}">
             <a href ="photographer.html?photographeId=${photographe.id}">
              <img src="${picture}" alt="photographe"/>
             </a>

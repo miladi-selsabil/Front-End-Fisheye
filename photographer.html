@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,8 +20,9 @@
       <a href="./index.html" class="logo-link">
          <img src="assets/images/logo.png" class="logo" alt="Page principale FishEye"/>
         </a>
-    </header>
-    <main id="main" aria-label="navigation-media">
+    </header>                <div class="total-likes"></div>
+
+    <main id="main-photographer" aria-label="navigation-media">
       <div class="photograph-header" aria-label="Informations Photographe" role="information" tabindex="0"></div>
         <div class="listbox_container">
             <span class="filter-by" aria-label="liste filtrante">Trier par</span>
@@ -31,7 +31,6 @@
                 <option value="date" id="date">Date</option> 
                 <option value="titre">Titre</option>
             </select>
-                <div class="likes-counter"></div>
         </div> 
       <div class="medias_content"></div>
     </main>
@@ -49,6 +48,8 @@
               name="first-name"
               type="text"
               class="text-control"
+              required
+              aria-required=true
             /><br />
             <div class="error_first_name error"></div>
           </div>
@@ -59,6 +60,8 @@
               name="name"
               type="text"
               class="text-control"
+              required
+              aria-required=true
             /><br />
             <div class="error_name error"></div>
           </div>
@@ -69,6 +72,8 @@
               type="email"
               id="email"
               name="email"
+              required
+              aria-required=true
             /><br />
             <div class="error_email error"></div>
           </div>
@@ -79,6 +84,8 @@
               type="text"
               id="message"
               name="message"
+              required
+              aria-required=true
             />
             <div class="error_message error"></div>
           </div>
@@ -91,6 +98,3 @@
     <script src="./scripts/pages/photographer.js" type="module"></script>
   </body>
 </html>
-
-
-

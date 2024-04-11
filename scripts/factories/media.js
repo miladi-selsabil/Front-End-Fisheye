@@ -60,8 +60,8 @@ export function mediaFactory(data, photographerName) {
     <div class="detail_media">
       <div class="name_img">
         <p tabindex="0" aria-label="${data.title}">${data.title}</p>
-      <div class="like">
-            <p tabindex="0" aria-label="${data.likes}">${data.likes}</p>
+      <div class="likes-container">
+            <p tabindex="0" class="like-count" data-id=${data.id} aria-label="${data.likes}">${data.likes}</p>
             <button class="like-button" data-id="${data.id}"><i class="fas fa-heart"></i></button>
           </div>
 
@@ -109,33 +109,32 @@ export function lightbox(data, photographerName) {
 
   return { image, video, carousel: carousel() };
 }
-export function updateTotalLikes(mediaArray) {
-  const totalLikesElement = document.querySelector(".total-likes");
-  if (totalLikesElement) {
-    const totalLikes = mediaArray.reduce((acc, media) => acc + media.likes, 0);
-    totalLikesElement.textContent = totalLikes;
+
+export function handleLike(event) {
+  event.preventDefault();
+  const button = event.currentTarget;
+  const mediaId = button.getAttribute("data-id");
+  const likeElement = document.querySelector(
+    `.like-count[data-id="${mediaId}"]`
+  );
+  let likes = parseInt(likeElement.innerText);
+
+  if (!button.classList.contains("liked")) {
+    likes++;
+    button.classList.add("liked");
   } else {
-    console.error("The total likes element was not found in the DOM.");
+    likes--;
+    button.classList.remove("liked");
   }
+
+  likeElement.innerText = likes;
+  updateTotalLikes();
 }
-
-export function handleLike(event, mediaArray) {
-  const mediaElement = event.target.closest(".media-container");
-  const likeCountElement = mediaElement.querySelector(".like-count");
-  const mediaId = mediaElement.dataset.mediaId;
-
-  const media = mediaArray.find((m) => m.id.toString() === mediaId);
-
-  if (media && !media.liked) {
-    media.likes += 1;
-    media.liked = true; 
-    likeCountElement.textContent = media.likes; 
-
-    updateTotalLikes(mediaArray);
-  } else if (!media) {
-    console.error();
-  }
+export function updateTotalLikes() {
+  const likesElements = document.querySelectorAll(".like-count");
+  const totalLikes = Array.from(likesElements).reduce(
+    (acc, element) => acc + parseInt(element.textContent),
+    0
+  );
+  document.querySelector(".total-likes").textContent = totalLikes;
 }
-
-
-

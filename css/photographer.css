@@ -10,12 +10,15 @@
         background-color: #fff;
         opacity: 0.9;
 }
+#main-photographer{
+    max-width: 1274px;
+    margin: 0 auto ;
+}
 
 .photograph-header {
-    background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
-    padding: 52px;
+        background-color: #FAFAFA;
+            height: 300px;
+            padding: 52px;
 }
 
 .contact_button {
@@ -92,30 +95,34 @@ form .error{
     border-radius: 5px;
     width: 350px;
     height: 300px;
+ aspect-ratio: 22 / 19;
+ object-fit: cover;
 }
-.img_media:focus {
+/* .img_media:focus {
     box-shadow: none;
 }
 
 .img_media:focus {
     outline: 0;
     box-shadow: #901C1C;
-}
+} */
 .medias_content{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-     margin-left: 100px;
-    margin-right: 100px;
-    margin-top: 70px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 70px;
+}
+.medias_content div{
+    margin-bottom: 15px;
 }
 .name_img{
     display: flex;
     justify-content: space-between;
     color: #901C1C;
     margin-top: 8px;
-    font-size: 24px;
-    font-weight: 400;
+    font-size: 20px;
+    font-weight: 500;
 }
 .name_img .like{
     display: flex;
@@ -152,9 +159,7 @@ form .error{
     margin-bottom: 30px;
     text-decoration: none;
 }
-.listbox_container{
-    margin: 0 100px;
-}
+
 .listbox_container .filter-by{
     font-size: 1.125rem;
      font-weight: 700;
@@ -170,6 +175,15 @@ form .error{
             border: none;
             border-radius: 5px;
 }
+.listbox option{width: 100%;
+    height: 4rem;
+    border-radius: 0;
+    background-color: #901c1c;
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-align: left;
+    text-decoration: none;}
 
 .lightbox{
     position: fixed;
@@ -219,6 +233,14 @@ form .error{
     border: none;
     color: #901C1C;
 }
+.close-lightbox:focus{
+-webkit-box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+    box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+}
+.close:focus {
+    -webkit-box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+    box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+}
 .lightboxcontainer img{
     max-height: 85vh;
     max-width: 100%;
@@ -231,10 +253,22 @@ form .error{
     height: 100%;
       
 }
-.like-button.isliked {
-    color: red;
+.likes-container{
+    display: flex;
+}
+.like-button{
+    border: none;
+    background: none;
+    color: #901C1C;
+    font-size: 20px;
+        
 }
 .lightboxcontainer .lightbox-video{
 max-height: 85vh;
 max-width: 100%;
+}
+
+.likes-container:focus {
+    -webkit-box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+    box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
 }
