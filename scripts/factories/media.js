@@ -54,14 +54,15 @@ export function mediaFactory(data, photographerName) {
     } else {
        
 
+
       mediaContent = `
-       <a href="#" class="carte_media" tabindex="0">
-    <img class="img_media" aria-label="${img}" alt="${title}" src="${img}" data-lightbox-src="${img}" data-lightbox-title="${data.title}"/>
+       <a href="#" class="carte_media"  data-lightbox-src="${img}" data-lightbox-title="${data.title}">
+    <img class="img_media" aria-label="${img}" alt="${title}" src="${img}"/>
     <div class="detail_media">
       <div class="name_img">
-        <p tabindex="0" aria-label="${data.title}">${data.title}</p>
+        <p aria-label="${data.title}">${data.title}</p>
       <div class="likes-container">
-            <p tabindex="0" class="like-count" data-id=${data.id} aria-label="${data.likes}">${data.likes}</p>
+            <p class="like-count" data-id=${data.id} aria-label="${data.likes}">${data.likes}</p>
             <button class="like-button" data-id="${data.id}"><i class="fas fa-heart"></i></button>
           </div>
 
@@ -83,7 +84,7 @@ export function lightbox(data, photographerName) {
   function mediaElement() {
     if (image) {
       const imgPath = `./assets/photographers/${photographerName}/${image}`;
-      return `<img class="lightbox-image" alt="${title}" src="${imgPath}" data-lightbox-src="${imgPath}" data-lightbox-title="${title}"/>`;
+      return `<img class="lightbox-image" alt="${title}" src="${imgPath}" data-lightbox-src="${imgPath}"  data-lightbox-title="${title}"/>`;
     } else if (video) {
       const videoPath = `./assets/photographers/${photographerName}/${video}`;
       return `<video class="lightbox-video" alt="${title}" controls>
@@ -96,7 +97,7 @@ export function lightbox(data, photographerName) {
     return `
       <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog">
         <button class="close-lightbox" aria-label="Fermer médias lightbox"><i class="fas fa-times"></i></button>
-        <button class="lightbox-btn" id="next" type="button" aria-label="Photo suivante"><i class="fas fa-chevron-right"></i></button> 
+        <button class="lightbox-btn" id="next" type="button" aria-label="Photo suivante" ><i class="fas fa-chevron-right"></i></button> 
         <button class="lightbox-btn" id="prev" type="button" aria-label="Photo précédente"><i class="fas fa-chevron-left"></i></button>
         <div class="lightboxcontainer">
           ${mediaElement()} 

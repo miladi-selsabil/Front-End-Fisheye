@@ -17,13 +17,15 @@
   </head>
   <body>
     <header role="banner" aria-label="header">
-      <a href="./index.html" class="logo-link">
+      <a href="./index.html" class="logo-link" tabindex="1" aria-label="Fisheye Home page">
          <img src="assets/images/logo.png" class="logo" alt="Page principale FishEye"/>
         </a>
-    </header>                <div class="total-likes"></div>
-
+    </header>               
     <main id="main-photographer" aria-label="navigation-media">
-      <div class="photograph-header" aria-label="Informations Photographe" role="information" tabindex="0"></div>
+
+      <div class="photograph-header" aria-label="Informations Photographe" role="information" tabindex="0"></div>     
+        <div class="total-likes"></div>
+
         <div class="listbox_container">
             <span class="filter-by" aria-label="liste filtrante">Trier par</span>
             <select  aria-label="filtrer par" name="filtre" id="listbox" class="listbox">
