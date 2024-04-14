@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -11,8 +11,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-  		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet" />
-
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet" />
     <title>Fisheye - photographe</title>
   </head>
   <body>
@@ -23,13 +24,13 @@
     </header>               
     <main id="main-photographer" aria-label="navigation-media">
 
-      <div class="photograph-header" aria-label="Informations Photographe" role="information" tabindex="0"></div>     
+      <div class="photograph-header" aria-label="Informations Photographe" role="information" ></div>     
         <div class="total-likes"></div>
 
         <div class="listbox_container">
             <span class="filter-by" aria-label="liste filtrante">Trier par</span>
             <select  aria-label="filtrer par" name="filtre" id="listbox" class="listbox">
-                <option value="popularite" >Popularité <i class="fas fa-chevron-down"></i><i class="fas fa-chevron-up"></i></option>
+                <option value="popularite" >Popularité <i alt="fa-chevron-down" class="fas fa-chevron-down"></i><i class="fas fa-chevron-up"></i></option>
                 <option value="date" id="date">Date</option> 
                 <option value="titre">Titre</option>
             </select>
@@ -37,66 +38,71 @@
       <div class="medias_content"></div>
     </main>
     <div id="contact_modal" >
-      <div class="modal" aria-label="modale de contact" tabindex="0">
+      <div class="modal" aria-label="modale de contact" >
         <header>
           <h2>Contactez-moi</h2>
-          <img class="close" src="assets/icons/close.svg" />
-        </header>
-        <form id="inscription" method="dialog" role=group>
-          <div>
-            <label for="prenom" aria-label="entrez votre prénom">Prénom</label>
-            <input
-              id="first-name"
-              name="first-name"
-              type="text"
-              class="text-control"
-              required
-              aria-required=true
-            /><br />
-            <div class="error_first_name error"></div>
-          </div>
-          <div>
-            <label for="nom" aria-label="entrez votre nom">Nom</label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              class="text-control"
-              required
-              aria-required=true
-            /><br />
-            <div class="error_name error"></div>
-          </div>
-          <div>
-            <label for="email" aria-label="entrez votre email">Email</label>
-            <input
-              class="text-control"
-              type="email"
-              id="email"
-              name="email"
-              required
-              aria-required=true
-            /><br />
-            <div class="error_email error"></div>
-          </div>
-          <div>
-            <label for="message" aria-label="entrez votre message">Message</label>
-            <input
-              class="text-control"
-              type="text"
-              id="message"
-              name="message"
-              required
-              aria-required=true
-            />
-            <div class="error_message error"></div>
-          </div>
-          <button class="contact_button" type="submit">Envoyer</button>
-        </form>
+          <img class="close" tabindex="0"  alt="close" src="assets/icons/close.svg" />
+          </header>
+    <form id="inscription" method="dialog" role="group"  tabindex="-1" >
+      
+  <div>
+    <label for="first-name">Prénom</label>
+    <input
+      id="first-name"
+      name="first-name"
+      type="text"
+      class="text-control"
+      required
+      aria-required="true"
+    />
+    <br />
+    <div class="error_first_name error"></div>
+  </div>
+  <div>
+    <label for="name">Nom</label>
+    <input
+      id="name"
+      name="name"
+      type="text"
+      class="text-control"
+      required
+      aria-required="true"
+    />
+    <br />
+    <div class="error_name error"></div>
+  </div>
+  <div>
+    <label for="email">Email</label>
+    <input
+      class="text-control"
+      type="email"
+      id="email"
+      name="email"
+      required
+      aria-required="true"
+    />
+    <br />
+    <div class="error_email error"></div>
+  </div>
+  <div>
+    <label for="message">Message</label>
+    <textarea
+      class="text-control"
+      id="message"
+      name="message"
+      required
+      aria-required="true"
+    ></textarea>
+    <div class="error_message error"></div>
+  </div>
+  <button class="contact_button"
+ type="submit">Envoyer</button>
+</form>
       </div>
     </div>
     <div class="lightbox_container"></div>
 
     <script src="./scripts/pages/photographer.js" type="module"></script>
+
   </body>
 </html>

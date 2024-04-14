@@ -52,7 +52,12 @@
 .modal header img {
     cursor: pointer;
 }
-
+input:focus{
+    outline: 0;
+        -webkit-box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+        box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+        opacity: 1;
+}
 .modal header h2 {
     font-size: 64px;
     font-weight: normal;
@@ -104,6 +109,7 @@ form .error{
     outline: 0;
     box-shadow: #901C1C;
 } */
+
 .medias_content{
         display: flex;
         flex-wrap: wrap;
@@ -130,8 +136,9 @@ form .error{
      padding-left: 6px;
 }
 .picture, .picture_photographe{
-    height: 200px;
-        width: 200px;
+    height: 12rem;
+        width: 12rem;
+        object-fit: cover;
         border-radius: 50%;
 }
 .contact_photographe{
@@ -193,9 +200,10 @@ form .error{
     z-index: 10;
     overflow: auto;
 }
+
 .lightbox-btn{
     position: fixed;
-    top: 0;
+    margin-top: 20%;
     z-index: 11;
      opacity: 1;
     border: none;
@@ -207,7 +215,6 @@ form .error{
     display: flex;
     justify-content: center;
      align-items: center;
-     bottom: 0;
 
 }
 
@@ -232,7 +239,12 @@ form .error{
     opacity: 1;
 }
 
-
+.img_media:focus {
+    outline: 0;
+    -webkit-box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+    box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+    opacity: 1;
+}
 .lightbox #prev:focus{
     outline: 0;
     -webkit-box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
@@ -258,7 +270,7 @@ form .error{
 }
 .close-lightbox:focus{
 -webkit-box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
-    box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+    box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);           
 }
 .close:focus {
     -webkit-box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
@@ -286,12 +298,34 @@ form .error{
     font-size: 20px;
         
 }
+.like-button :hover{
+    color: rgba(225, 83, 97, 0.5)
+}
 .lightboxcontainer .lightbox-video{
 max-height: 85vh;
 max-width: 100%;
 }
 
 .likes-container:focus {
+    outline: 0;
     -webkit-box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
     box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+}
+.total-likes {
+    color: #000;
+    border: 1px solid #000;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2em;
+    right: 2.25rem;
+    width: fit-content;
+    background: #db8876;
+    font-size: 1.5rem;
+    font-weight: 500;
+    position: fixed;
+    bottom: 0;
+                
 }

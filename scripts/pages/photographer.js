@@ -16,7 +16,50 @@ import {
  depuis l' API et les affiches sur la page photographer.html. Elle créer des éléments
   article pour chaque média et utilise la fonction Media(element).render() pour 
   générer le contenu HTML correspondant à chaque média.
-*/
+*/function setupLightboxEventHandlers(
+  index,
+  media,
+  photographe,
+  lightboxContainer
+) {
+  const prevButton = lightboxContainer.querySelector("#prev");
+  const nextButton = lightboxContainer.querySelector("#next");
+  const closeButton = lightboxContainer.querySelector(".close-lightbox");
+if (closeButton) {
+        closeButton.focus();
+      }
+  prevButton.addEventListener("click", () => navigateLightbox(-1));
+  nextButton.addEventListener("click", () => navigateLightbox(1));
+  closeButton.addEventListener(
+    "click",
+    () => (lightboxContainer.style.display = "none")
+  );
+
+  function navigateLightbox(direction) {
+    index += direction;
+    if (index < 0) index = media.length - 1;
+    if (index >= media.length) index = 0;
+    updateLightbox(index, media, photographe, lightboxContainer);
+  }
+}
+
+function setupKeyboardNavigation(index, media, photographe, lightboxContainer) {
+  window.addEventListener("keydown", (event) => {
+    if (lightboxContainer.style.display === "block") {
+      switch (event.key) {
+        case "ArrowRight":
+          document.querySelector("#next").click();
+          break;
+        case "ArrowLeft":
+          document.querySelector("#prev").click();
+          break;
+        case "Escape":
+          document.querySelector(".close-lightbox").click();
+          break;
+      }
+    }
+  });
+}
 const displayLightbox = (photographe, media) => {
   const container = document.querySelector(".medias_content");
   container.addEventListener("click", (event) => {
@@ -27,73 +70,24 @@ const displayLightbox = (photographe, media) => {
       const index = Array.from(listeMedia).indexOf(img);
       const nodelightbox = lightbox(media[index], photographe.name);
 
-      /* Sélectionner le conteneur de la lightbox et injecter le nouveau contenu*/
       const lightboxContainer = document.querySelector(".lightbox_container");
       lightboxContainer.style.display = "block";
       lightboxContainer.innerHTML = nodelightbox.carousel;
 
-      function setupLightboxEventHandlers(
-        index,
-        media,
-        photographe,
-        lightboxContainer
-      ) {
-        const prevButton = lightboxContainer.querySelector("#prev");
-        const nextButton = lightboxContainer.querySelector("#next");
-        const closeButton = lightboxContainer.querySelector(".close-lightbox");
-
-        if (prevButton) {
-          prevButton.addEventListener("click", () => {
-            if (index > 0) {
-              index--;
-            } else {
-              index = media.length - 1;
-            }
-            updateLightbox(index, media, photographe, lightboxContainer);
-          });
-        }
-
-        if (nextButton) {
-          nextButton.addEventListener("click", () => {
-            if (index < media.length - 1) {
-              index++;
-            } else {
-              index = 0;
-            }
-            updateLightbox(index, media, photographe, lightboxContainer);
-          });
-        }
-
-        if (closeButton) {
-          closeButton.addEventListener("click", () => {
-            lightboxContainer.style.display = "none";
-          });
-        }
-      }
-
-      /* Cette fonction met à jour le contenu de la lightbox et réinitialise les gestionnaires d'événements*/
-      function updateLightbox(index, media, photographe, lightboxContainer) {
-        const nodelightbox = lightbox(media[index], photographe.name);
-        lightboxContainer.innerHTML = nodelightbox.carousel;
-        setupLightboxEventHandlers(
-          index,
-          media,
-          photographe,
-          lightboxContainer
-        );
-      }
-
-      /* Initialisez la lightbox en attachant les gestionnaires d'événements
-       pour la première fois après avoir injecté le contenu initial dans le lightboxContainer*/
-      setupLightboxEventHandlers(
-        0,
-        media,
-        photographe,
-        document.querySelector(".lightbox_container")
-      );
+      setupLightboxEventHandlers(index, media, photographe, lightboxContainer);
+      setupKeyboardNavigation(index, media, photographe, lightboxContainer);
     }
   });
-}; 
+};
+
+
+
+function updateLightbox(index, media, photographe, lightboxContainer) {
+  const nodelightbox = lightbox(media[index], photographe.name);
+  lightboxContainer.innerHTML = nodelightbox.carousel;
+  setupLightboxEventHandlers(index, media, photographe, lightboxContainer);
+}
+
 /* Cette fonction récupère l'ID du photographe à partir des paramètres d'URL
  (photographeId) 
 et utilise cet ID pour récupérer les médias spécifiques de ce photographe à l'aide
@@ -147,13 +141,19 @@ function addLikeEventListeners() {
       trierParPopularite(media);
     }
     root.innerHTML = "";
+    function addLikeEventListeners() {
+      const likeButtons = document.querySelectorAll(".like-button");
+      likeButtons.forEach((button) => {
+        button.addEventListener("click", handleLike);
+      });
+    }
     media.forEach((element) => {
       const nodeMedia = mediaFactory(element, photographe.name).getMedia();
       const mediaContainer = document.createElement("div");
       mediaContainer.innerHTML = nodeMedia;
       root.appendChild(mediaContainer);
     });
-  
+  addLikeEventListeners();
     
   });
   user(photographe);

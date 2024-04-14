@@ -1,3 +1,5 @@
+
+
 const form = document.getElementById("inscription");
 export function initModal() {
   const closeBouton = document.querySelector(".close");
@@ -21,6 +23,16 @@ export function initModal() {
 function displayModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "block";
+   form.elements[0].focus();
+    setTimeout(() => {
+      const closeButton = modal.querySelector(".close");
+      if (closeButton) {
+        closeButton.focus();
+      } else {
+        console.error("Close button not found");
+      }
+    }, 0
+  );
 }
 
 function closeModal() {
