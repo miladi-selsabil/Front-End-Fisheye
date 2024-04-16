@@ -23,17 +23,48 @@ export function initModal() {
 function displayModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "block";
-   form.elements[0].focus();
-    setTimeout(() => {
-      const closeButton = modal.querySelector(".close");
-      if (closeButton) {
-        closeButton.focus();
-      } else {
-        console.error("Close button not found");
-      }
-    }, 0
+  const focusableElements = Array.from(
+    modal.querySelectorAll(
+      'input, textarea, button, [tabindex]:not([tabindex="-1"])'
+    )
   );
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  firstElement.focus();
+
+  modal.addEventListener("keydown", function (event) {
+    if (event.key === "Tab") {
+      if (event.shiftKey) {
+        if (document.activeElement === firstElement) {
+          event.preventDefault(); 
+          lastElement.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          event.preventDefault(); 
+          firstElement.focus(); 
+        }
+      }
+    }
+  });
+setTimeout(() => {
+  const closeButton = modal.querySelector(".close");
+  if (closeButton) {
+    closeButton.focus();
+
+    closeButton.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        modal.style.display = "none";
+      }
+    });
+  } else {
+    console.error("Close button not found");
+  }
+}, 0);
+
 }
+
 
 function closeModal() {
   const modal = document.getElementById("contact_modal");

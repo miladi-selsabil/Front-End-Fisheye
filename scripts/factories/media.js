@@ -34,23 +34,23 @@ export function mediaFactory(data, photographerName) {
 
     if (video) {
       mediaContent = `
-          <a href="#" class="carte_media" tabindex="0">
+          <article  class="carte_media" tabindex="0">
           <video class="img_media" ">
             <source src="${vid}" type="video/mp4">
-            Votre navigateur ne supporte pas les vidéos HTML5.
+           
           </video>
           <div class="detail_media">
             <div class="name_img">
               <p tabindex="0" aria-label="${data.title}">${data.title}</p>
-               <div class="likes-container">
-        <p class="like-count" data-id="${data.id}" aria-label="${data.likes}">${data.likes}</p>
-        <button type="button" data-bs-toggle="button" class="like-button"  data-price="${data.price}"data-id="${data.id}" aria-label="Like">
-          <span role="img" aria-label="Like" class="fas fa-heart"></span>
-        </button>
-      </div>
+              <div class="likes-container">
+              <p class="like-count" data-id="${data.id}" aria-label="${data.likes}">${data.likes}</p>
+              <button type="button" data-bs-toggle="button" class="like-button" data-id="${data.id}" data-price="${data.price}" aria-label="Like">
+                <span role="img" aria-label="Like" class="fas fa-heart"></span>
+              </button>
+            </div>
             </div>
           </div>
-        </a>
+        </article>
         <script>
           const videoElement = document.querySelector('.img_media');
           videoElement.addEventListener('mouseenter', function() { videoElement.play(); });
@@ -62,12 +62,12 @@ export function mediaFactory(data, photographerName) {
 
 
       mediaContent = `
-       <a href="#" class="carte_media "tabindex="0"  data-lightbox-src="${img}" data-lightbox-title="${data.title}">
+       <article  class="carte_media "tabindex="0"  data-lightbox-src="${img}" data-lightbox-title="${data.title}">
     
     <img class="img_media"  alt="${title}" src="${img}"/>
     <div class="detail_media">
       <div class="name_img">
-        <p aria-label="${data.title}">${data.title}</p>
+        <p tabindex="0" aria-label="${data.title}">${data.title}</p>
       <div class="likes-container">
         <p class="like-count" data-id="${data.id}" aria-label="${data.likes}">${data.likes}</p>
         <button type="button" data-bs-toggle="button" class="like-button" data-id="${data.id}" data-price="${data.price}" aria-label="Like">
@@ -76,7 +76,7 @@ export function mediaFactory(data, photographerName) {
       </div>
       </div>
     </div>
-  </a>
+  </article>
       `;
     }
 

@@ -25,15 +25,16 @@ import {
   const prevButton = lightboxContainer.querySelector("#prev");
   const nextButton = lightboxContainer.querySelector("#next");
   const closeButton = lightboxContainer.querySelector(".close-lightbox");
-if (closeButton) {
-        closeButton.focus();
-      }
+
+  if (closeButton) {
+    closeButton.focus();
+  }
   prevButton.addEventListener("click", () => navigateLightbox(-1));
   nextButton.addEventListener("click", () => navigateLightbox(1));
-  closeButton.addEventListener(
-    "click",
-    () => (lightboxContainer.style.display = "none")
-  );
+  closeButton.addEventListener("click", () => {
+    lightboxContainer.style.display = "none";
+    removeTrapFocus(); 
+  });
 
   function navigateLightbox(direction) {
     index += direction;
@@ -41,9 +42,38 @@ if (closeButton) {
     if (index >= media.length) index = 0;
     updateLightbox(index, media, photographe, lightboxContainer);
   }
+
+  setupTrapFocus(lightboxContainer); 
 }
 
-function setupKeyboardNavigation(index, media, photographe, lightboxContainer) {
+function setupTrapFocus(lightboxContainer) {
+  const focusableElements = lightboxContainer.querySelectorAll(
+    ' button, [tabindex]:not([tabindex="-1"])'
+  );
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  lightboxContainer.addEventListener("keydown", function (event) {
+    if (event.key === "Tab") {
+      if (event.shiftKey) {
+        if (document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement.focus();
+        }
+      }
+    }
+  });
+}
+
+
+
+
+function setupKeyboardNavigation( lightboxContainer) {
   window.addEventListener("keydown", (event) => {
     if (lightboxContainer.style.display === "block") {
       switch (event.key) {

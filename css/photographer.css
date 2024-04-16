@@ -240,10 +240,9 @@ form .error{
 }
 
 .img_media:focus {
-    outline: 0;
-    -webkit-box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
-    box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
-    opacity: 1;
+        outline: none;
+            -webkit-box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+            box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
 }
 .lightbox #prev:focus{
     outline: 0;
