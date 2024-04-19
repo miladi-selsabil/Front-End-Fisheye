@@ -1,11 +1,15 @@
 
 
 const form = document.getElementById("inscription");
-export function initModal() {
+export function initModal(photographer) {
   const closeBouton = document.querySelector(".close");
   const bouton = document.querySelector(".contact_button");
   bouton.addEventListener("click", () => displayModal());
   closeBouton.addEventListener("click", () => closeModal());
+  const nameElement = document.getElementById("photographer-name");
+  if (nameElement) {
+    nameElement.textContent = photographer.name;
+  }
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 

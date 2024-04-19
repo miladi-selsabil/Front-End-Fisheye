@@ -35,7 +35,7 @@
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,8 +59,9 @@ input:focus{
         opacity: 1;
 }
 .modal header h2 {
-    font-size: 64px;
+    font-size: 44px;
     font-weight: normal;
+        margin: 0 auto;
     text-align: center;
 }
 
@@ -93,6 +94,11 @@ form input {
 form .error{
     color: red;
 }
+form #message{
+    width: 100%;
+    height: 100px;
+    border: none;
+    border-radius: 5px;}
 
 .img_media{
     border-radius: 5px;
@@ -180,6 +186,7 @@ form .error{
             border: none;
             border-radius: 5px;
 }
+
 .listbox option{width: 100%;
     height: 4rem;
     border-radius: 0;
@@ -232,6 +239,11 @@ form .error{
 
 
 }
+.lightbox-body > p{
+    color: #901C1C;
+        font-family: DM Sans;
+        font-size: 20px;
+}
 .lightbox #next:focus {
     outline: 0;
     -webkit-box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
@@ -268,12 +280,15 @@ form .error{
     color: #901C1C;
 }
 .close-lightbox:focus{
--webkit-box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+-webkit-box-shadow: 0 0 0 0.25rem rgba(225,
+    83,
+    97,
+    0.5);
     box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);           
 }
 .close:focus {
-    -webkit-box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
-    box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+    -webkit-box-shadow: 0 0 0 0.25rem rgba(240, 237, 238, 0.5);
+    box-shadow: 0 0 0 0.25rem rgba(240, 237, 238, 0.5);
 }
 .lightboxcontainer img{
     max-height: 85vh;

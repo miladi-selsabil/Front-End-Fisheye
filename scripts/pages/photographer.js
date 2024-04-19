@@ -33,7 +33,6 @@ import {
   nextButton.addEventListener("click", () => navigateLightbox(1));
   closeButton.addEventListener("click", () => {
     lightboxContainer.style.display = "none";
-    removeTrapFocus(); 
   });
 
   function navigateLightbox(direction) {
@@ -42,6 +41,7 @@ import {
     if (index >= media.length) index = 0;
     updateLightbox(index, media, photographe, lightboxContainer);
   }
+  setupKeyboardNavigation(lightboxContainer, navigateLightbox);
 
   setupTrapFocus(lightboxContainer); 
 }
@@ -68,28 +68,42 @@ function setupTrapFocus(lightboxContainer) {
       }
     }
   });
+
 }
 
-
-
-
-function setupKeyboardNavigation( lightboxContainer) {
-  window.addEventListener("keydown", (event) => {
-    if (lightboxContainer.style.display === "block") {
+function setupKeyboardNavigation(lightboxContainer, navigateLightbox) {
+  function handleKeydown(event) {
+    if (lightboxContainer && lightboxContainer.style.display === "block") {
       switch (event.key) {
         case "ArrowRight":
-          document.querySelector("#next").click();
+                  navigateLightbox(1);
+
           break;
         case "ArrowLeft":
-          document.querySelector("#prev").click();
+                  navigateLightbox(-1);
+
           break;
         case "Escape":
           document.querySelector(".close-lightbox").click();
           break;
       }
     }
+  }
+
+  // Ajout l'écouteur d'événements de manière plus contrôlée
+  window.addEventListener("keydown", handleKeydown);
+
+
+}
+
+
+function addLikeEventListeners() {
+  const likeButtons = document.querySelectorAll(".like-button");
+  likeButtons.forEach((button) => {
+    button.addEventListener("click", handleLike);
   });
 }
+
 const displayLightbox = (photographe, media) => {
   const container = document.querySelector(".medias_content");
   container.addEventListener("click", (event) => {
@@ -103,11 +117,12 @@ const displayLightbox = (photographe, media) => {
       const lightboxContainer = document.querySelector(".lightbox_container");
       lightboxContainer.style.display = "block";
       lightboxContainer.innerHTML = nodelightbox.carousel;
-
+         setupKeyboardNavigation(lightboxContainer);
+     
       setupLightboxEventHandlers(index, media, photographe, lightboxContainer);
-      setupKeyboardNavigation(index, media, photographe, lightboxContainer);
     }
   });
+  
 };
 
 
@@ -135,16 +150,6 @@ async function init() {
   const photographe = await getPhotographeById(id);
 
   root.innerHTML = "";
-function addLikeEventListeners() {
-  const likeButtons = document.querySelectorAll(".like-button");
-  likeButtons.forEach((button) => {
-    button.addEventListener("click", handleLike);
-  });
-}
-
-
-
-
 
   media.forEach((element) => {
     const nodeMedia = mediaFactory(element, photographe.name).getMedia();
@@ -152,10 +157,10 @@ function addLikeEventListeners() {
     mediaContainer.innerHTML = nodeMedia;
     root.appendChild(mediaContainer);
   });
- addLikeEventListeners()
+  addLikeEventListeners();
 
- displayLightbox(photographe, media)
-     updateTotalLikes();
+  displayLightbox(photographe, media);
+  updateTotalLikes();
 
   const listbox = document.querySelector(".listbox");
 
@@ -183,11 +188,10 @@ function addLikeEventListeners() {
       mediaContainer.innerHTML = nodeMedia;
       root.appendChild(mediaContainer);
     });
-  addLikeEventListeners();
-    
+    addLikeEventListeners();
   });
   user(photographe);
-  initModal();
+  initModal(photographe);
 }
 
 function user(photographe) {

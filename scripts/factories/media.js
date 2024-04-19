@@ -1,5 +1,5 @@
 export function infoDuPhotographe(data) {
-  const { id, name, portrait, city, tagline } = data;
+  const { id, name, portrait, city, tagline, price} = data;
   const picture = `assets/photographers/${portrait}`;
 
   function getDom() {
@@ -21,7 +21,7 @@ export function infoDuPhotographe(data) {
         </div>
     `;
   }
-  return { id, name, portrait, city, tagline, getDom };
+  return { id, name, portrait, city, tagline, price, getDom };
 }
 
 export function mediaFactory(data, photographerName) {
@@ -35,7 +35,7 @@ export function mediaFactory(data, photographerName) {
     if (video) {
       mediaContent = `
           <article  class="carte_media" tabindex="0">
-          <video class="img_media" ">
+          <video class="img_media" tabindex="0">
             <source src="${vid}" type="video/mp4">
            
           </video>
@@ -44,7 +44,7 @@ export function mediaFactory(data, photographerName) {
               <p tabindex="0" aria-label="${data.title}">${data.title}</p>
               <div class="likes-container">
               <p class="like-count" data-id="${data.id}" aria-label="${data.likes}">${data.likes}</p>
-              <button type="button" data-bs-toggle="button" class="like-button" data-id="${data.id}" data-price="${data.price}" aria-label="Like">
+              <button type="button" data-bs-toggle="button" class="like-button" data-id="${data.id}" aria-label="Like">
                 <span role="img" aria-label="Like" class="fas fa-heart"></span>
               </button>
             </div>
@@ -64,13 +64,13 @@ export function mediaFactory(data, photographerName) {
       mediaContent = `
        <article  class="carte_media "tabindex="0"  data-lightbox-src="${img}" data-lightbox-title="${data.title}">
     
-    <img class="img_media"  alt="${title}" src="${img}"/>
+    <img class="img_media" tabindex="0"  alt="${title}" src="${img}"/>
     <div class="detail_media">
       <div class="name_img">
         <p tabindex="0" aria-label="${data.title}">${data.title}</p>
       <div class="likes-container">
         <p class="like-count" data-id="${data.id}" aria-label="${data.likes}">${data.likes}</p>
-        <button type="button" data-bs-toggle="button" class="like-button" data-id="${data.id}" data-price="${data.price}" aria-label="Like">
+        <button type="button" data-bs-toggle="button" class="like-button" data-id="${data.id}"  aria-label="Like">
           <span role="img" aria-label="Like" class="fas fa-heart"></span>
         </button>
       </div>
@@ -92,13 +92,25 @@ export function lightbox(data, photographerName) {
   function mediaElement() {
     if (image) {
       const imgPath = `./assets/photographers/${photographerName}/${image}`;
-      return `<img class="lightbox-image" alt="${title}" src="${imgPath}" data-lightbox-src="${imgPath}"  data-lightbox-title="${title}"/>`;
+      return `
+      <div class="lightbox-body">
+      <img class="lightbox-image" alt="${title}" src="${imgPath}" data-lightbox-src="${imgPath}"  data-lightbox-title="${title}"/>
+        <p tabindex="0" aria-label="${data.title}">
+              ${data.title}
+            </p></div>;`;
     } else if (video) {
       const videoPath = `./assets/photographers/${photographerName}/${video}`;
-      return `<video class="lightbox-video" alt="${title}" controls>
+      return `
+      <div class="lightbox-body">
+      <video class="lightbox-video" alt="${title}" controls>
                 <source src="${videoPath}" type="video/mp4">
-              </video>`;
+              </video>
+               <p tabindex="0" aria-label="${data.title}">
+              ${data.title}
+            </p></div>`;
     }
+          
+
   }
 
   function carousel() {
@@ -147,10 +159,11 @@ export function updateTotalLikes() {
 
   likesElements.forEach(element => {
     totalLikes += parseInt(element.textContent, 10);
-    totalPrice += parseInt(element.dataset.price, 10);
   });
 
 
   const totalLikesContainer = document.querySelector(".total-likes");
-  totalLikesContainer.textContent = `${totalLikes}  ${totalPrice}€ / jour`;
+  totalLikesContainer.textContent = `${totalLikes}  ${totalPrice}
+  € / jour`;
+  console.log("---", totalPrice)
 }
