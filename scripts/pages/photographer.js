@@ -124,7 +124,32 @@ const displayLightbox = (photographe, media) => {
   });
   
 };
+const displayLightboxOnKeyEvent = (photographe, media) => {
+  const container = document.querySelector(".medias_content");
+  container.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+      const img = event.target;
+      const listeMedia = container.querySelectorAll(".img_media");
+      const isImageMedia = img.classList.contains("img_media");
+      if (isImageMedia) {
+        const index = Array.from(listeMedia).indexOf(img);
+        const nodelightbox = lightbox(media[index], photographe.name);
 
+        const lightboxContainer = document.querySelector(".lightbox_container");
+        lightboxContainer.style.display = "block";
+        lightboxContainer.innerHTML = nodelightbox.carousel;
+        //setupKeyboardNavigation(lightboxContainer)
+
+        setupLightboxEventHandlers(
+          index,
+          media,
+          photographe,
+          lightboxContainer
+        );
+      }
+    }
+  });
+};
 
 
 function updateLightbox(index, media, photographe, lightboxContainer) {
@@ -150,9 +175,10 @@ async function init() {
   const photographe = await getPhotographeById(id);
 
   root.innerHTML = "";
-
+let totalLikes = 0
   media.forEach((element) => {
     const nodeMedia = mediaFactory(element, photographe.name).getMedia();
+    totalLikes += element.likes;
     const mediaContainer = document.createElement("div");
     mediaContainer.innerHTML = nodeMedia;
     root.appendChild(mediaContainer);
@@ -160,7 +186,8 @@ async function init() {
   addLikeEventListeners();
 
   displayLightbox(photographe, media);
-  updateTotalLikes();
+  displayLightboxOnKeyEvent(photographe, media);
+  updateTotalLikes(totalLikes, photographe.price);
 
   const listbox = document.querySelector(".listbox");
 

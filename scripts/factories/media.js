@@ -138,32 +138,28 @@ export function handleLike(event) {
   const likeElement = document.querySelector(
     `.like-count[data-id="${mediaId}"]`
   );
+  const totalLikeSpan = document.querySelector(".nb-total-likes");
+  let total = Number.parseInt(totalLikeSpan.textContent, 10);
   let likes = parseInt(likeElement.innerText);
 
   if (!button.classList.contains("liked")) {
     likes++;
+    total++;
     button.classList.add("liked");
   } else {
     likes--;
+    total--;
     button.classList.remove("liked");
   }
 
   likeElement.innerText = likes;
-  updateTotalLikes();
+  totalLikeSpan.innerText = total;
 }
 
-export function updateTotalLikes() {
-  const likesElements = document.querySelectorAll(".like-count");
-  let totalLikes = 0;
-  let totalPrice = 0;
-
-  likesElements.forEach(element => {
-    totalLikes += parseInt(element.textContent, 10);
-  });
-
-
+export function updateTotalLikes(totalLikes, price) {
   const totalLikesContainer = document.querySelector(".total-likes");
-  totalLikesContainer.textContent = `${totalLikes}  ${totalPrice}
-  € / jour`;
-  console.log("---", totalPrice)
+  totalLikesContainer.innerHTML = `
+  <span class="nb-total-likes">${totalLikes}</span>
+  <span>&nbsp;&nbsp;</span> 
+  <span>${price}€ / jour</span>`;
 }
