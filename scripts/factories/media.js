@@ -159,7 +159,7 @@ export function handleLike(event) {
 export function updateTotalLikes(totalLikes, price) {
   const totalLikesContainer = document.querySelector(".total-likes");
   totalLikesContainer.innerHTML = `
-  <span class="nb-total-likes">${totalLikes}</span>
+  <span class="nb-total-likes">${totalLikes}</span><span role="img" aria-label="Like" class="fas fa-heart"></span>
   <span>&nbsp;&nbsp;</span> 
   <span>${price}€ / jour</span>`;
 }
