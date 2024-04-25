@@ -25,7 +25,7 @@ export function trierParPopularite(media) {
   media.sort((a, b) => {
     const likesA = a.likes;
     const likesB = b.likes;
-    return likesA - likesB;
+    return likesB - likesA;
   });
   console.log("Popularites triés", media);
 }
